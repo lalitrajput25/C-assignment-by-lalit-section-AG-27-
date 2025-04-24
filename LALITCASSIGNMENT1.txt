@@ -1,0 +1,185 @@
+NAME: LALIT
+SECTION: AG
+SECTION ROLL NO.: 27
+UNIVERSITY ROLL NO.: 2415000890
+SUBJECT: C PROGRAMMING ASSIGNMENT 1
+SUBMITTED TO: MR. AYUSH TIWARI SIR 
+
+---------------------------------------------------------------------------
+
+/*
+Q.1 In a town, the percentage of men is 52. The percentage of total literacy is 48.
+If total percentage of literate men is 35 of the total population, write a program to
+find the total number of illiterate men and women if the population of the town is
+80,000.
+*/
+CODE OUTPUT:
+Illiterate Men: 31600
+Illiterate Women: 9800
+
+#include <stdio.h>
+int main() 
+{
+    int tp = 80000;
+    float per_men = 52.0;
+    float tlit_per = 48.0;
+    float litmen_per = 35.0;
+    float men = (per_men / 100) * tp;
+    float women = tp - men;
+    float litmen = (litmen_per / 100) * tp;
+    float illitmen = men - litmen;
+    float tlit = (tlit_per / 100) * tp;
+    float litwomen = tlit - litmen;
+    float illitwomen = women - litwomen;
+    printf("Illiterate Men: %d\n", (int)illitmen);
+    printf("Illiterate Women: %d\n", (int)illitwomen);
+    return 0;
+}
+
+/*
+Q.2 An Insurance company follows t h e following rules to calculate premium.
+(1) If a person’s health is excellent and the person is between 25
+and 35 years of age and lives in a city and is a male then the
+premium is Rs. 4 per thousand and his policy amount cannot
+exceed Rs. 2 lakhs.
+(2) If a person satisfies all the above conditions except that the
+sex is female then the premium is Rs. 3 per thousand and her
+policy amount cannot exceed Rs. 1 lakh.
+(3) If a person’s health is poor and the person is between 25 and
+35 years of age and lives in a village and is a male
+then the premium is Rs. 6 per thousand and his policy
+cannot exceed Rs. 10,000.
+(4) In all other cases the person is not insured.
+Write a program to output whether the person should be insured or not, his/her
+premium rate and maximum amount for which he/she can be insured.
+*/
+
+CODE OUTPUT:
+Enter health condition (excellent/poor): excellent
+Enter age: 30
+Enter location (city/village): city
+Enter sex (male/female): female
+Person is insured.
+Premium rate: Rs. 3 per thousand
+Maximum policy amount: Rs. 100000
+
+
+#include <stdio.h>
+#include <string.h>
+int main() {
+    char health[30], location[30], sex[10];
+    int age;
+    printf("Enter health condition (excellent/poor): ");
+    scanf("%s", health);
+    printf("Enter age: ");
+    scanf("%d", &age);
+    printf("Enter location (city/village): ");
+    scanf("%s", location);
+    printf("Enter sex (male/female): ");
+    scanf("%s", sex);
+    if (strcmp(health, "excellent") == 0 && (age >= 25 && age <= 35) && strcmp(location, "city") == 0) {
+        if (strcmp(sex, "male") == 0) {
+            printf("Person is insured.\n");
+            printf("Premium rate: Rs. 4 per thousand\n");
+            printf("Maximum policy amount: Rs. 200000\n");
+        } else if (strcmp(sex, "female") == 0) {
+            printf("Person is insured.\n");
+            printf("Premium rate: Rs. 3 per thousand\n");
+            printf("Maximum policy amount: Rs. 100000\n");
+        } else {
+            printf("Invalid sex input.\n");
+        }
+    }
+    else if (strcmp(health, "poor") == 0 && (age >= 25 && age <= 35) && strcmp(location, "village") == 0 && strcmp(sex, "male") == 0) {
+        printf("Person is insured.\n");
+        printf("Premium rate: Rs. 6 per thousand\n");
+        printf("Maximum policy amount: Rs. 10000\n");
+    }
+    else {
+        printf("Person is not insured.\n");
+    }
+
+    return 0;
+}
+
+
+/*
+Q.3 Write a program to print all prime numbers from 1 to 300.
+*/
+
+CODE OUTPUT;
+Prime numbers from 1 to 300 are:
+2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101 103 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193 197 199 211 223 227 229 233 239 241 251 257 263 269 271 277 281 283 293
+
+
+#include <stdio.h>
+int prime(int num) {
+    int count = 0;
+    if (num < 2)
+        return 0;
+    for (int i = 1; i <= num; i++) {
+        if (num % i == 0)
+            count++;
+    }
+    return (count == 2); 
+}
+int main() {
+    printf("Prime numbers from 1 to 300 are:\n");
+    for (int i = 1; i <= 300; i++) {
+        if (prime(i)) {
+            printf("%d ", i);
+        }
+    }
+    return 0;
+}
+
+
+
+
+
+
+Q.5 Write a program in C to count the total number of duplicate elements in an array.
+Test Data :
+Input the number of elements to be stored in the array :3
+Input 3 elements in the array :
+element - 0 : 5
+element - 1 : 1
+element - 2 : 1
+Expected Output :
+Total number of duplicate elements found in the array is : 1
+
+#include <stdio.h>
+
+int main() {
+    int arr[100], n, i, j;
+    int check[100] = {0};
+
+    printf("Input the number of elements to be stored in the array: ");
+    scanf("%d", &n);
+
+    printf("Input %d elements in the array:\n", n);
+    for (i = 0; i < n; i++) {
+        printf("element - %d : ", i);
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Duplicate elements :\n");
+
+    for (i = 0; i < n; i++) {
+        if (check[i]) continue;
+
+        int count = 1;
+        for (j = i + 1; j < n; j++) {
+            if (arr[i] == arr[j]) {
+                count++;
+                check[j] = 1;
+            }
+        }
+
+        if (count > 1) {
+            printf("%d \n", arr[i], count-1);
+        }
+    }
+
+    return 0;
+}
